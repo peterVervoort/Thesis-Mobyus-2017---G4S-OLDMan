@@ -1,0 +1,22 @@
+﻿<div class="row">
+    <div class="col-md-12">
+            <div class="panel panel-card margin-b-30 " ng-class="[ngClass, {'panel-collapsed' : collapsed}]">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{{title | translate}}</h4>
+                    <div class="panel-actions">
+                        <div ng-transclude="actions" ng-hide="collapsed"></div>
+                        <a ng-click="toggleCollapsed()"
+                           ng-if="collapse"
+                           class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                        <a ng-click="onRemove()" 
+                           ng-if="dismissable" 
+                           class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
+                    </div>
+                </div>
+                <div class="panel-body" ng-hide="collapsed">
+                    <div ng-transclude></div>
+                </div>
+            </div>
+    </div>
+</div>
+

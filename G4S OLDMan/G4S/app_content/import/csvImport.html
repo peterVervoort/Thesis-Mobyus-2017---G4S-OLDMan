@@ -1,0 +1,22 @@
+﻿<g4s-page-top-bar title="CsvImport"></g4s-page-top-bar>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-card margin-b-30">
+            <div class="panel-heading">
+                <h4 class="panel-title">{{CsvImport.ImportFile | translate}}</h4>
+            </div>
+            <div class="panel-body">
+                <div ngf-drop ngf-select ng-model="files" 
+                     class="drop-box"
+                     ngf-drag-over-class="'dragover'" 
+                     ngf-multiple="true" 
+                     ngf-allow-dir="false"
+                     accept="*/csv, application/vnd.ms-excel"
+                     ngf-pattern="'*/csv,application/vnd.ms-excel'">{{CsvImport.DropCSVFilesHereOrClickToUpload | translate}}</div>
+                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser, please consider switching to chrome</div>
+
+            </div>
+        </div>
+    </div>
+</div>

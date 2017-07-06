@@ -1,0 +1,106 @@
+﻿<g4s-page-top-bar title="Users"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="userForm"
+          ng-submit="ctrl.save(userForm.$valid)"
+          novalidate>
+        <g4s-form-element label="User.FirstName">
+            <input type="text"
+                   name="firstName"
+                   required
+                   placeholder="{{User.FirstName | translate}}"
+                   ng-model="ctrl.user.firstName"
+                   class="form-control">
+            <p ng-show="userForm.firstName.$invalid && userForm.firstName.$touched"
+               class="help-block">{{'User.FirstNameRequired' | translate}}</p>
+        </g4s-form-element>
+        <g4s-form-element label="User.Name">
+            <input type="text"
+                   required
+                   name="name"
+                   placeholder="{{User.Name | translate}}"
+                   ng-model="ctrl.user.name"
+                   class="form-control">
+            <p ng-show="userForm.name.$invalid && userForm.name.$touched"
+               class="help-block">{{'User.NameRequired' | translate}}</p>
+        </g4s-form-element>
+        <g4s-form-element label="User.Email">
+            <input type="email"
+                   required
+                   name="email"
+                   placeholder="{{User.Email | translate}}"
+                   ng-model="ctrl.user.email"
+                   class="form-control">
+            <p ng-show="userForm.email.$invalid && userForm.email.$touched"
+               class="help-block">{{'User.EmailValidRequired' | translate}}</p>
+        </g4s-form-element>
+        <g4s-form-element label="User.Password">
+            <input type="password"
+                   ng-required="!ctrl.editMode"
+                   name="password"
+                   placeholder="{{User.Password | translate}}"
+                   ng-model="ctrl.user.password"
+                   ng-minlength="8"
+                   class="form-control">
+            <p ng-show="!ctrl.editMode && userForm.password.$invalid && userForm.password.$touched"
+               class="help-block">{{'User.PasswordAtLeast8Characters' | translate}}</p>
+        </g4s-form-element>
+        <g4s-form-element label="User.PasswordRepeat">
+            <input type="password"
+                   ng-required="!ctrl.editMode"
+                   name="passwordRepeat"
+                   placeholder="{{User.Password | translate}}"
+                   ng-model="ctrl.user.passwordRepeat"
+                   class="form-control">
+            <p ng-show="ctrl.editMode && userForm.passwordRepeat.$invalid && userForm.passwordRepeat.$touched"
+               class="help-block">{{'User.PasswordRepeatRequired' | translate}}</p>
+            <p ng-show="ctrl.editMode && userForm.passwordRepeat.$touched && ctrl.user.passwordRepeat !== ctrl.user.password"
+               class="help-block">{{'User.PasswordRepeatMustMatch' | translate}}</p>
+        </g4s-form-element>
+        <g4s-form-element label="User.Language">
+            <select class="form-control m-b"
+                    required
+                    name="language"
+                    ng-options="language.taal for language in ctrl.languages track by language.id"
+                    ng-model="ctrl.user.language">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="userForm.language.$invalid && userForm.language.$touched"
+               class="help-block">{{'User.LanguageRequired' | translate}}</p>
+        </g4s-form-element>
+        <g4s-form-element label="User.RoleGroup">
+            <select class="form-control m-b"
+                    required
+                    name="rolegroup"
+                    ng-options="roleGroup.name for roleGroup in ctrl.roleGroups track by roleGroup.id"
+                    ng-model="ctrl.user.roleGroup">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="userForm.rolegroup.$invalid && userForm.rolegroup.$touched"
+               class="help-block">{{'User.RoleGroupRequired' | translate}}</p>
+        </g4s-form-element>
+
+
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="userForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

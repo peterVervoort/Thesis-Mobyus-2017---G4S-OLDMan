@@ -1,0 +1,43 @@
+﻿<g4s-page-top-bar title="ToBeTreatedMobileDevices"></g4s-page-top-bar>
+
+<div class="row">
+
+    <div class="col-xs-12">
+        <g4s-panel title="{{'General.Warnings'}}">
+            <form class="form-horizontal">
+                <div class="form-group"
+                     ng-repeat="warning in ctrl.toBeTreatedMobileDevice.validationMessages track by warning">
+                    <label class="col-xs-12 col-md-6 col-lg-5 control-label">{{'ValidationMessages.DeviceWarningLabel' | translate}}</label>
+                    <div class="col-xs-12 col-md-6 col-lg-7">
+                        <p class="control-label heavyfont">{{warning}}</p>
+                    </div>
+                </div>
+            </form>
+            <form class="form-horizontal">
+                <div class="form-group"
+                     ng-repeat="warning in ctrl.toBeTreatedMobileDevice.lwpSetting.validationMessages track by warning">
+                    <label class="col-xs-12 col-md-6 col-lg-5 control-label">{{'ValidationMessages.LwpWarningLabel' | translate}}</label>
+                    <div class="col-xs-12 col-md-6 col-lg-7">
+                        <p class="control-label heavyfont">{{warning}}</p>
+                    </div>
+                </div>
+            </form>
+        </g4s-panel>
+    </div>
+
+    <div class="col-xs-12 col-lg-6">
+        <g4s-detail-form ng-model="ctrl.toBeTreatedMobileDevice"
+                         definition="ctrl.definition"
+                         delete-resource="{{resources.toBeTreatedMobileDevices}}"
+                         delete-role="{{roles.deviceDelete}}"
+                         edit-state="{{states.toBeTreatedMobileDeviceEdit}}"
+                         return-state="{{states.toBeTreatedMobileDeviceList}}">
+        </g4s-detail-form>
+    </div>
+
+    <div class="col-xs-12 col-lg-6">
+        <lwp-setting-detail ng-model="ctrl.toBeTreatedMobileDevice.lwpSetting">
+        </lwp-setting-detail>
+    </div>
+
+</div>

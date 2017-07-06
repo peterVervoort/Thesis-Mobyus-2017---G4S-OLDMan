@@ -1,0 +1,66 @@
+﻿<g4s-page-top-bar title="PurchaseOrder"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="purchaseOrderForm"
+          ng-submit="ctrl.save(purchaseOrderForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="PurchaseOrder.PurchaseOrderNumber">
+            <input type="number"
+                   name="number"
+                   required
+                   placeholder="{{'PurchaseOrder.PurchaseOrderNumber' | translate}}"
+                   ng-model="ctrl.purchaseOrder.purchaseOrderNumber"
+                   class="form-control">
+            <p ng-show="purchaseOrderForm.number.$invalid && purchaseOrderForm.number.$touched"
+               class="help-block">{{'PurchaseOrder.PurchaseOrderNumberrRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="PurchaseOrder.OrderDate">
+            <!--<input type="date"
+                   name="orderDate"
+                   required
+                   placeholder="{{'PurchaseOrder.OrderDate' | translate}}"
+                   ng-model="ctrl.purchaseOrder.orderDate"
+                   class="form-control">
+            <p ng-show="purchaseOrderForm.orderDate.$invalid && purchaseOrderForm.orderDate.$touched"
+               class="help-block">{{'PurchaseOrder.OrderDateOrderRequired' | translate}}</p>-->
+
+
+
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"
+                       name="orderDate"
+                       ng-model="ctrl.purchaseOrder.orderDate"
+                       is-open="popup1.opened"
+                       popup-placement="bottom-left"
+                       ng-required="true"
+                       
+                       close-text="{{'General.BtnDateClose' | translate}}" 
+                       current-text="{{'General.BtnToday' | translate}}" 
+                       clear-text="{{'General.BtnClear  ' | translate}}" 
+                       alt-input-formats="['d!/M!/yyyy']" />
+                <span class="input-group-btn">
+                    <button type="button" style="padding: 4px 6px;" class="btn btn-default" ng-click="popup1.opened = true;"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+            <p ng-show="purchaseOrderForm.orderDate.$invalid && purchaseOrderForm.orderDate.$touched"
+               class="help-block">{{'PurchaseOrder.OrderDateOrderRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="purchaseOrderForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

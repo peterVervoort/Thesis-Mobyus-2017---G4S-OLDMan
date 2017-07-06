@@ -1,0 +1,52 @@
+﻿<g4s-page-top-bar title="Languages"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="languageForm"
+          ng-submit="ctrl.save(languageForm.$valid)"
+          novalidate>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">{{'Language.Language' | translate}}</label>
+
+            <div class="col-lg-10">
+                <input type="text"
+                       name="language"
+                       required
+                       placeholder="{{'Language.Language' | translate}}"
+                       ng-model="ctrl.language.taal"
+                       class="form-control">
+                <p ng-show="languageForm.language.$invalid && languageForm.language.$touched"
+                   class="help-block">{{'Language.LanguageRequired' | translate}}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">{{'Language.ShortCode' | translate}}</label>
+
+            <div class="col-lg-10">
+                <input type="text"
+                       name="shortcode"
+                       required
+                       placeholder="{{'Language.ShortCode' | translate}}"
+                       ng-model="ctrl.language.shortCode"
+                       class="form-control">
+                <p ng-show="languageForm.shortcode.$invalid && languageForm.shortcode.$touched"
+                   class="help-block">{{'Language.ShortCodeRequired' | translate}}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="languageForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

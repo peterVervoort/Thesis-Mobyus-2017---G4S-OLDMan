@@ -1,0 +1,52 @@
+﻿<g4s-page-top-bar title="StateChanges"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="stateChangeForm"
+          ng-submit="ctrl.save(stateChangeForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="StateChange.StateFrom">
+            <select class="form-control m-b"
+                    name="stateFrom"
+                    ng-options="state.name for state in ctrl.states track by state.id"
+                    ng-model="ctrl.stateChange.stateFrom">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="stateChangeForm.stateFrom.$invalid && stateChangeForm.stateFrom.$touched"
+               class="help-block">{{'Translation.StateFromRequired' | translate }}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="StateChange.StateTo">
+            <select class="form-control m-b"
+                    required
+                    name="stateTo"
+                    ng-options="state.name for state in ctrl.states track by state.id"
+                    ng-model="ctrl.stateChange.stateTo">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="stateChangeForm.stateTo.$invalid && stateChangeForm.stateTo.$touched"
+               class="help-block">{{'Translation.StateToRequired' | translate }}</p>
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="stateChangeForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

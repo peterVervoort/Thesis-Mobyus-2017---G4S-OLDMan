@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0">
+    <meta name="description" content="G4S Order Licence Device Management">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>G4S OLDMan</title>
+
+    @Styles.Render("~/Content/css")
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/angular")
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-sanitize.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/line-chart/2.0.28/LineChart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-chart/2.0.28/LineChart.css"/>
+    
+
+</head>
+<body ng-app="app" class="fixed-navbar fixed-sidebar">
+    <!-- Static navbar -->
+    <!-- Simple splash screen-->
+    <div class="splash">
+        <div class="splash-title">
+            <div class="spinner">
+                <img src="~/Content/images/loading-new.gif" alt="" />
+            </div>
+        </div>
+    </div>
+
+
+    <!--[if lt IE 9]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+    <nav class="navbar navbar-default yamm navbar-fixed-top" id="header">
+        <div class="color-line">
+        </div>
+        <div class="container-fluid">
+            <button type="button" class="navbar-minimalize minimalize-styl-2  pull-left "><i class="fa fa-bars"></i></button>
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">   G4S OLDMan</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse" ng-controller="NavBarController as navCtrl">
+                <div class="search" style="display: none;">
+                    <form>
+                        <input type="text" class="form-control" autocomplete="off" placeholder="Write something and press enter">
+                        <span class="search-close"><i class="fa fa-times"></i></span>
+                    </form>
+                </div>
+            
+                <ul class="nav navbar-nav navbar-right navbar-top-drops">
+                    <li class="dropdown" g4s-role>
+                        <a class="dropdown-toggle button-wave" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+
+                        <ul class="dropdown-menu dropdown-lg animated flipInX profile">
+
+                            <li><a g4s-role role="{{roles.usersOverview}}" ng-click="navCtrl.accountView()"><i class="fa fa-user"></i>{{'Account.Profile' | translate}}</ag4s-role></li>
+                            <li><a g4s-role roles="{{roles.usersEditPasswordOnly}}, {{roles.usersEdit}}"ng-click="navCtrl.changePassword()"><i class="fa fa-key"></i>{{'Account.ChangePassword' | translate}}</a></li>
+                            <li class="divider"></li>
+                            <li><a ng-click="navCtrl.accountLogout()"><i class="fa fa-lock"></i>{{'General.Logout' | translate}}</a></li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+    <section class="page">
+        <div  ng-controller="SideBarController as sideCtrl">
+            <nav class="navbar-aside navbar-static-side " id="menu" ng-show="sideCtrl.loggedIn">
+                <div class="sidebar-collapse">
+                    <div>
+                        <ul class="nav" id="side-menu">
+                            <li><a g4s-state-role ui-sref="{{states.purchaseOrderList}}"><i class="fa fa-shopping-bag"></i> <span class="nav-label">{{'SideNav.PurchaseOrderLists' | translate}}</span></a></li>
+                            <li><a g4s-state-role ui-sref="{{states.orderItemList}}"><i class="fa fa-object-group"></i> <span class="nav-label">{{'SideNav.OrderItemlist' | translate}}</span></a></li>
+                            <li><a g4s-state-role ui-sref="{{states.mobileDeviceList}}"><i class="fa fa-mobile"></i> <span class="nav-label">{{'SideNav.Devices' | translate}}</span></a></li>
+                            <li><a g4s-state-role ui-sref="{{states.loginLicenceList}}"><i class="fa fa-id-card-o"></i> <span class="nav-label">{{'SideNav.LoginLicences' | translate}}</span></a></li>
+                            <li><a g4s-state-role ui-sref="{{states.toBeTreatedMobileDeviceList}}"><i class="fa fa-exclamation-triangle"></i> <span class="nav-label">{{'SideNav.ToBeTreated' | translate}}</span></a></li>
+
+                            <li><a g4s-state-role ui-sref="{{states.dashboard}}"><i class="fa fa-th-large"></i> <span class="nav-label">{{'SideNav.Dashboard' | translate}}</span></a></li>
+
+                            <li g4s-role roles="{{roles.usersOverview}}, {{roles.userRolesGroupOverview}}, {{roles.userRolesView}},{{roles.loginSiteOverview}}, {{roles.repairReasonOverview}}, {{roles.platformOverview}}, {{roles.deviceTypeOverview}},{{roles.productTypeOverview}},{{roles.statesOverview}}, {{roles.deviceStatesFlowOverview}}, {{roles.orderStatesFlowOverview}},{{roles.languageOverview}}, {{roles.translationOverview}},{{roles.cSVImport}}">
+                                <a><i class="fa fa-cog"></i> <span class="nav-label">{{'SideNav.Admin' | translate}} </span></a>
+                                <ul class="nav nav-second-level collapse in">
+                                    <!--users-->
+                                    <li g4s-role roles="{{roles.usersOverview}}, {{roles.userRolesGroupOverview}}, {{roles.userRolesView}}">
+                                        <a><i class="fa fa-user"></i> <span class="nav-label">{{'SideNav.Users' | translate}}</span></a>
+                                        <ul class="nav nav-second-level collapse">
+                                            <li><a g4s-state-role ui-sref="{{states.userList}}">- {{'SideNav.Users' | translate}}</a></li>
+                                            <li><a g4s-state-role ui-sref="{{states.userRoleList}}">- {{'SideNav.UserRoles' | translate}}</a></li>
+                                            <li><a g4s-state-role ui-sref="{{states.userRoleGroupList}}">- {{'SideNav.RoleGroups' | translate}}</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--translations-->
+                                    <li g4s-role roles="{{roles.languageOverview}}, {{roles.translationOverview}}">
+                                        <a><i class="fa fa-language"></i> <span class="nav-label">{{'SideNav.Translations' | translate}}</span></a>
+                                        <ul class="nav nav-second-level collapse">
+                                            <li><a g4s-state-role ui-sref="{{states.languageList}}">- {{'SideNav.Languages' | translate}}</a></li>
+                                            <li><a g4s-state-role ui-sref="{{states.translationList}}">- {{'SideNav.Translations' | translate}}</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--flow-->
+                                    <li g4s-role roles="{{roles.statesOverview}}, {{roles.deviceStatesFlowOverview}}, {{roles.orderStatesFlowOverview}}">
+                                        <a><i class="fa fa-arrows-h"></i> <span class="nav-label">{{'SideNav.Flow' | translate}}</span></a>
+                                        <ul class="nav nav-second-level collapse">
+                                            <li><a g4s-state-role ui-sref="{{states.stateList}}">- {{'SideNav.States' | translate}}</a></li>
+                                            <li><a g4s-state-role ui-sref="{{states.stateChangeList}}">- {{'SideNav.StateChanges' | translate}}</a></li>
+                                            <li><a g4s-state-role ui-sref="{{states.orderStateChangeList}}">- {{'SideNav.OrderStateChanges' | translate}}</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--list-->
+                                    <li g4s-role roles="{{roles.loginSiteOverview}}, {{roles.repairReasonOverview}}, {{roles.platformOverview}},{{roles.deviceTypeOverview}},{{roles.productTypeOverview}}">
+                                        <a><i class="fa fa-list-alt"></i> <span class="nav-label">{{'SideNav.Lists' | translate}}</span></a>
+                                        <ul class="nav nav-second-level collapse">
+                                            <li><a g4s-state-role ui-sref="{{states.loginSiteList}}">- {{'SideNav.LoginSites' | translate}}</a></li>
+                                            <li><a g4s-state-role ui-sref="{{states.repairReasonList}}">- {{'SideNav.RepairReason' | translate}}</a></li>
+                                            <li><a g4s-state-role ui-sref="{{states.platformList}}">- {{'SideNav.Platform' | translate}}</a></li>
+                                            <li><a g4s-state-role ui-sref="{{states.deviceTypeList}}">- {{'SideNav.DeviceType' | translate}}</a></li>
+                                            <li><a g4s-state-role ui-sref="{{states.productTypeList}}">- {{'SideNav.ProductType' | translate}}</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--other-->
+                                    <li><a g4s-state-role ui-sref="{{states.csvImport}}"><i class="fa fa-upload"></i> <span class="nav-label">{{'SideNav.CSVImport' | translate}}</span></a></li>
+                                    <li><a g4s-state-role ui-sref="{{states.settings}}"><i class="fa fa-gears"></i> <span class="nav-label">{{'SideNav.Settings' | translate}}</span></a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+        <div id="wrapper">
+            <div class="content-wrapper container">
+
+                <!-- angular app always in a bootstrap container-->
+                @RenderBody()
+
+            </div>
+        </div>
+    </section>
+
+    @Scripts.Render("~/bundles/app")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+
+    <script type="text/javascript" src="~/Scripts/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/js/metisMenu.min.js"></script>
+    <script src="~/Scripts/js/jquery.nanoscroller.min.js"></script>
+    <script src="~/Scripts/js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Scripts/js/pace.min.js"></script>
+    <script src="~/Scripts/js/waves.min.js"></script>
+    <script src="~/Scripts/js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Scripts/js/custom.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

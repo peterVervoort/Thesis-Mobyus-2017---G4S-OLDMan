@@ -1,0 +1,105 @@
+﻿<g4s-page-top-bar title="ToBeTreatedMobileDevices"></g4s-page-top-bar>
+
+<form class="form-horizontal"
+      name="toBeTreatedMobileDeviceForm"
+      ng-submit="ctrl.save(toBeTreatedMobileDeviceForm.$valid)"
+      novalidate>
+
+    <g4s-panel title="{{ctrl.title}}">
+        <actions>
+            <button class="btn btn-sm btn-primary" ng-if="!ctrl.editType"
+                    ng-disabled="toBeTreatedMobileDeviceForm.$invalid"
+                    type="button"
+                    ng-click="ctrl.massInsert()">
+                {{'General.BtnMassInsert' | translate }}
+            </button>
+            <button class="btn btn-sm btn-primary"
+                    ng-disabled="toBeTreatedMobileDeviceForm.$invalid"
+                    type="submit">
+                {{'General.BtnSave' | translate }}
+            </button>
+            <button class="btn btn-sm btn-default"
+                    type="button"
+                    ng-click="ctrl.cancel()">
+                {{'General.BtnCancel' | translate }}
+            </button>
+        </actions>
+
+        <g4s-form-element label="ToBeTreatedMobileDevice.Platform">
+            <select class="form-control m-b"
+                    required
+                    name="platform"
+                    ng-options="platform.platform for platform in ctrl.platforms track by platform.id"
+                    ng-model="ctrl.toBeTreatedMobileDevice.platform">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="toBeTreatedMobileDeviceForm.platform.$invalid && toBeTreatedMobileDeviceForm.platform.$touched"
+               class="help-block">{{'ToBeTreatedMobileDevice.PlatformRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="ToBeTreatedMobileDevice.Name">
+            <input type="text"
+                   name="name"
+                   placeholder="{{'ToBeTreatedMobileDevice.NamePlaceHolder' | translate}}"
+                   ng-model="ctrl.toBeTreatedMobileDevice.deviceName"
+                   class="form-control">
+        </g4s-form-element>
+
+        <g4s-form-element label="ToBeTreatedMobileDevice.Reference">
+            <input type="text"
+                   name="reference"
+                   required
+                   placeholder="{{'ToBeTreatedMobileDevice.ReferencePlaceHolder' | translate}}"
+                   ng-model="ctrl.toBeTreatedMobileDevice.reference"
+                   class="form-control">
+            <p ng-show="toBeTreatedMobileDeviceForm.reference.$invalid && toBeTreatedMobileDeviceForm.reference.$touched"
+               class="help-block">{{'ToBeTreatedMobileDevice.ReferenceRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="ToBeTreatedMobileDevice.PhoneNumber">
+            <input type="text"
+                   name="phoneNumber"
+                   placeholder="{{'ToBeTreatedMobileDevice.PhoneNumberHolder' | translate}}"
+                   ng-model="ctrl.toBeTreatedMobileDevice.phoneNumber"
+                   class="form-control">
+        </g4s-form-element>
+
+        <g4s-form-element label="ToBeTreatedMobileDevice.LoginSite">
+            <select class="form-control m-b"
+                    name="site"
+                    ng-options="loginSite.siteName for loginSite in ctrl.loginSites track by loginSite.id"
+                    ng-model="ctrl.toBeTreatedMobileDevice.loginSite">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+        </g4s-form-element>
+
+        <g4s-form-element label="ToBeTreatedMobileDevice.Type">
+            <select class="form-control m-b"
+                    required
+                    name="deviceType"
+                    ng-options="deviceType.typeName for deviceType in ctrl.deviceTypes track by deviceType.id"
+                    ng-model="ctrl.toBeTreatedMobileDevice.deviceType">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="toBeTreatedMobileDeviceForm.deviceType.$invalid && toBeTreatedMobileDeviceForm.deviceType.$touched"
+               class="help-block">{{'ToBeTreatedMobileDevice.TypeRequired' | translate}}</p>
+        </g4s-form-element>
+
+        
+    </g4s-panel>
+
+    <g4s-panel title="{{'LwpSetting.PanelTitle' | translate}}" ng-show="ctrl.toBeTreatedMobileDevice.deviceType.lwpSettingPossible">
+        <lwp-setting-form ng-model="ctrl.lwpSetting"
+                          form-name="toBeTreatedMobileDeviceForm">
+        </lwp-setting-form>
+    </g4s-panel>
+</form>

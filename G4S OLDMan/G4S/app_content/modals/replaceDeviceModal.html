@@ -1,0 +1,47 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{'Modals.ReplaceDevice' | translate}}</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+    <g4s-panel>
+        <form class="form-horizontal"
+              name="replaceDeviceForm"
+              novalidate>
+            <g4s-form-element label="ReplaceDevice.OldState">
+                <select class="form-control m-b"
+                        name="oldState"
+                        ng-options="state.name for state in ctrl.states track by state.id"
+                        ng-model="ctrl.oldState">
+                    <option value=""
+                            disabled>
+                        -
+                    </option>
+                </select>
+                <p ng-show="replaceDeviceForm.oldState.$invalid && replaceDeviceForm.oldState.$touched"
+                   class="help-block">{{'Translation.OldStateRequired' | translate }}</p>
+            </g4s-form-element>
+
+            <g4s-form-element label="ReplaceDevice.NewState">
+                <select class="form-control m-b"
+                        name="newState"
+                        ng-options="state.name for state in ctrl.states track by state.id"
+                        ng-model="ctrl.newState">
+                    <option value=""
+                            disabled>
+                        -
+                    </option>
+                </select>
+                <p ng-show="replaceDeviceForm.newState.$invalid && replaceDeviceForm.newState.$touched"
+                   class="help-block">{{'Translation.NewStateRequired' | translate }}</p>
+            </g4s-form-element>
+        </form>
+    </g4s-panel>
+
+
+    <g4s-table headers="ctrl.mobileDeviceTable.headers"
+               actions="ctrl.mobileDeviceTable.actions"
+               search-criteria="ctrl.mobileDeviceTable.searchCriteria"
+               resource="resources.mobileDevices"
+               pagination>
+    </g4s-table>
+</div>

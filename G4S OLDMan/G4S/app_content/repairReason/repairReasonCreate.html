@@ -1,0 +1,49 @@
+﻿<g4s-page-top-bar title="RepairReasons"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="repairReasonForm"
+          ng-submit="ctrl.save(repairReasonForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="RepairReason.Reason">
+            <input type="text"
+                   name="reason"
+                   required
+                   placeholder="{{'RepairReason.Reason' | translate}}"
+                   ng-model="ctrl.repairReason.reason"
+                   class="form-control">
+            <p ng-show="repairReasonForm.name.$invalid && repairReasonForm.name.$touched"
+               class="help-block">{{'RepairReason.ReasonRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="RepairReason.Reason">
+            <select class="form-control m-b"
+                    required
+                    name="language"
+                    ng-options="state.name for state in ctrl.states track by state.id"
+                    ng-model="ctrl.repairReason.state">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="userForm.language.$invalid && userForm.language.$touched"
+               class="help-block">{{'User.LanguageRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="repairReasonForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

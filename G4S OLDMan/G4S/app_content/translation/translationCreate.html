@@ -1,0 +1,87 @@
+﻿<g4s-page-top-bar title="Translations"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="translationForm"
+          ng-submit="ctrl.save(translationForm.$valid)"
+          novalidate>
+
+
+        <div class="form-group" ng-hide="ctrl.dropdownsHidden">
+            <label class="col-lg-2 control-label">{{'Translation.Language' | translate }}</label>
+
+            <div class="col-lg-10">
+                <select class="form-control m-b"
+                        required
+                        name="language"
+                        ng-options="language.taal for language in ctrl.languages"
+                        ng-model="ctrl.translation.language">
+                    <option value=""
+                            disabled>
+                        -
+                    </option>
+                </select>
+                <p ng-show="userForm.language.$invalid && userForm.language.$touched"
+                   class="help-block">{{'Translation.LanguageRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">{{'Translation.Group' | translate }}</label>
+
+            <div class="col-lg-10">
+                <input type="text"
+                       name="group"
+                       required
+                       placeholder="{{'Translation.Group' | translate }}"
+                       ng-model="ctrl.translation.group"
+                       class="form-control">
+                <p ng-show="translationForm.group.$invalid && translationForm.group.$touched"
+                   class="help-block">{{'Translation.GroupRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">{{'Translation.Keyword' | translate }}</label>
+
+            <div class="col-lg-10">
+                <input type="text"
+                       name="keyword"
+                       required
+                       placeholder="{{'Translation.Keyword' | translate }}"
+                       ng-model="ctrl.translation.keyword"
+                       class="form-control">
+                <p ng-show="translationForm.keyword.$invalid && translationForm.keyword.$touched"
+                   class="help-block">{{'Translation.KeywordRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">{{'Translation.Value' | translate }}</label>
+
+            <div class="col-lg-10">
+                <textarea name="value"
+                          required
+                          placeholder="{{'Translation.Value' | translate }}"
+                          ng-model="ctrl.translation.value"
+                          class="form-control"></textarea>
+                <p ng-show="translationForm.value.$invalid && translationForm.value.$touched"
+                   class="help-block">{{'Translation.ValueRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="translationForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

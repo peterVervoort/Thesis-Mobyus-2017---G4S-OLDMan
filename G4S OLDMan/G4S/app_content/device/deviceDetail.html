@@ -1,0 +1,33 @@
+﻿<g4s-page-top-bar title="MobileDevices"></g4s-page-top-bar>
+
+<div class="row">
+    <div ng-class="{'col-lg-6': ctrl.mobileDevice.hasLwpSetting, 'col-xs-12': !ctrl.mobileDevice.hasLwpSetting}">
+        <g4s-detail-form ng-model="ctrl.mobileDevice"
+                         definition="ctrl.definition"
+                         delete-resource="{{resources.mobileDevices}}"
+                         delete-role="{{roles.deviceDelete}}"
+                         edit-state="{{states.mobileDeviceEdit}}"
+                         return-state="{{states.mobileDeviceList}}">
+            <actions>
+                <a class="btn btn-warning"
+                   g4s-role roles="{{roles.deviceLinkItemLine}}, {{roles.itemLineLinkDevice}}"
+                   ng-click="ctrl.replaceDevice()">{{'General.BtnReplaceDevice' | translate}}</a>
+            </actions>
+        </g4s-detail-form>
+
+        <g4s-detail-form ng-model="ctrl.mobileDevice"
+                         title="General.StateDetail"
+                         definition="ctrl.stateDefinition">
+        </g4s-detail-form>
+
+        <device-state-change device="ctrl.mobileDeviceId">
+        </device-state-change>
+    </div>
+    <div class="col-lg-6" ng-if="ctrl.mobileDevice.hasLwpSetting">
+        <lwp-setting-detail ng-model="ctrl.mobileDevice.lwpSetting">
+        </lwp-setting-detail>
+    </div>
+</div>
+
+<device-timeline device="ctrl.mobileDeviceId">
+</device-timeline>

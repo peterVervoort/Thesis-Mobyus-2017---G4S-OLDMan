@@ -1,0 +1,23 @@
+﻿<g4s-page-top-bar title="ToBeTreatedLwpSettings"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="toBeTreatedLwpSettingForm"
+          ng-submit="ctrl.save(toBeTreatedLwpSettingForm.$valid)"
+          novalidate>
+
+        <lwp-setting-form ng-model="ctrl.toBeTreatedLwpSetting"
+                          form-name="toBeTreatedLwpSettingForm">
+        </lwp-setting-form>
+
+        <div class="form-group">
+            <div class="col-lg-12">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="toBeTreatedLwpSettingForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

@@ -1,0 +1,11 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{'Modals.AddRoleToGroup' | translate}} {{ctrl.group.name}}</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+    <g4s-table headers="ctrl.roleTable.headers"
+               actions="ctrl.roleTable.actions"
+               search-criteria="ctrl.roleTable.searchCriteria"
+               resource="resources.userRoles">
+    </g4s-table>
+</div>

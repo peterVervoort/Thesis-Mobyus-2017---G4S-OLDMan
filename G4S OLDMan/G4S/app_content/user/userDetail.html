@@ -1,0 +1,34 @@
+﻿<g4s-page-top-bar title="Users"></g4s-page-top-bar>
+
+<g4s-detail-form ng-model="ctrl.user"
+                 definition="ctrl.definition"
+                 delete-resource="{{resources.users}}"
+                 delete-role="{{roles.usersDelete}}"
+                 edit-state="{{states.userEdit}}"
+                 return-state="{{states.userList}}">
+    <actions>
+        <a class="btn btn-default"
+           g4s-role
+           role="{{roles.userRoleGroupAddRole}}"
+           ng-click="ctrl.addLoginSite()">{{'User.AddLoginSite' | translate}}</a>
+    </actions>
+</g4s-detail-form>
+
+<g4s-panel title="LoginSites.SelectedLoginSites" collapsable>
+    <g4s-table headers="ctrl.selectedLoginSitesTable.headers"
+               actions="ctrl.selectedLoginSitesTable.actions"
+               detail-state="states.loginSiteDetail"
+               search-criteria="ctrl.selectedLoginSitesTable.searchCriteria"
+               resource="resources.loginSites"
+               pagination>
+    </g4s-table>
+</g4s-panel>
+
+<g4s-panel title="UserRoleGroups.SelectedUserRoles">
+    <g4s-table headers="ctrl.selectedRolesTable.headers"
+               actions="ctrl.selectedRolesTable.actions"
+               search-criteria="ctrl.selectedRolesTable.searchCriteria"
+               resource="resources.userRoles"
+               pagination>
+    </g4s-table>
+</g4s-panel>

@@ -1,0 +1,49 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{'Modals.MultipleDevices' | translate}}</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+    <g4s-panel title="MobileDevice.Reference">
+        <actions>
+            <button class="btn btn-sm btn-primary"
+                    type="button"
+                    ng-click="ctrl.ready()">
+                {{'Modals.MultipleDevicesReadeButton' | translate }}
+            </button>
+        </actions>
+
+        <form class="form-horizontal"
+              name="deviceForm"
+              novalidate>
+
+            <g4s-form-element label="MobileDevice.Reference">
+                <input type="text"
+                       name="reference"
+                       placeholder="{{'MobileDevice.Reference' | translate}}"
+                       ng-model="ctrl.reference"
+                       ng-keypress="ctrl.keypressed($event)"
+                       class="form-control">
+            </g4s-form-element>
+
+        </form>
+    </g4s-panel>
+
+    <g4s-panel title="MultipleDevices.List">
+        <table st-table="ctrl.table.data" st-safe-src="data" class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="font-weight:600"
+                        ng-repeat='header in ctrl.table.headers'>
+                        {{ header.name | translate}}
+                    </th>
+                </tr>                
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in ctrl.table.data" >
+                    <td>{{row.reference}}</td>
+                    <td><i ng-show="row.inserted" style="color:green" class="fa fa-check" aria-hidden="true"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </g4s-panel>
+</div>

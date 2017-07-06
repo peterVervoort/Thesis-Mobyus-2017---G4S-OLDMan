@@ -1,0 +1,58 @@
+﻿<g4s-page-top-bar title="ProductTypes"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="productTypeForm"
+          ng-submit="ctrl.save(productTypeForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="ProductType.TypeName">
+            <input type="text"
+                   name="typeName"
+                   required
+                   placeholder="{{'ProductType.TypeName' | translate}}"
+                   ng-model="ctrl.productType.typeName"
+                   class="form-control">
+            <p ng-show="productTypeForm.typeName.$invalid && productTypeForm.typeName.$touched"
+               class="help-block">{{'ProductType.TypeNameRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="ProductType.DeviceTypeRequired">
+            <label class="checkbox-inline">
+                <input type="checkbox"
+                       ng-model="ctrl.productType.deviceTypeRequired"
+                       class="form-control">&nbsp;
+            </label>
+        </g4s-form-element>
+
+        <g4s-form-element label="ProductType.LoginLicenceRequired">
+            <label class="checkbox-inline">
+                <input type="checkbox"
+                       ng-model="ctrl.productType.loginLicenceRequired"
+                       class="form-control">&nbsp;
+            </label>
+        </g4s-form-element>
+
+        <g4s-form-element label="ProductType.HasOrderStates">
+            <label class="checkbox-inline">
+                <input type="checkbox"
+                       ng-model="ctrl.productType.hasOrderStates"
+                       class="form-control">&nbsp;
+            </label>
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="productTypeForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

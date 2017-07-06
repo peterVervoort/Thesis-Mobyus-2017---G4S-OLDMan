@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AD8FB5C8-BEDD-4D11-9211-86B296B4EB67}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>G4S.Entities</RootNamespace>
+    <AssemblyName>G4S.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\DeleteOption.cs" />
+    <Compile Include="Enums\SystemUserRole.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="Helpers\HistoryAttribute.cs" />
+    <Compile Include="HistoryPocos\HistoryEntityBase.cs" />
+    <Compile Include="Pocos\DeviceStateHistory.cs" />
+    <Compile Include="Pocos\CsvListItem.cs" />
+    <Compile Include="Pocos\Platform.cs" />
+    <Compile Include="Pocos\ProductType.cs" />
+    <Compile Include="Pocos\Base\EntityBase.cs" />
+    <Compile Include="Pocos\FlocId.cs" />
+    <Compile Include="Pocos\ItemBase.cs" />
+    <Compile Include="Pocos\Language.cs" />
+    <Compile Include="Pocos\LoginLicence.cs" />
+    <Compile Include="Pocos\LoginSite.cs" />
+    <Compile Include="Pocos\DeviceType.cs" />
+    <Compile Include="Pocos\StateKind.cs" />
+    <Compile Include="Pocos\ToBeTreatedLwpSetting.cs" />
+    <Compile Include="Pocos\LwpSetting.cs" />
+    <Compile Include="Pocos\ToBeTreatedMobileDevice.cs" />
+    <Compile Include="Pocos\MobileDevice.cs" />
+    <Compile Include="Pocos\OrderItem.cs" />
+    <Compile Include="Pocos\OrderItemHistory.cs" />
+    <Compile Include="Pocos\OrderStateChange.cs" />
+    <Compile Include="Pocos\PurchaseOrder.cs" />
+    <Compile Include="Pocos\RepairReason.cs" />
+    <Compile Include="Pocos\StateChange.cs" />
+    <Compile Include="Pocos\State.cs" />
+    <Compile Include="Pocos\Translation.cs" />
+    <Compile Include="Pocos\User.cs" />
+    <Compile Include="Pocos\UserRole.cs" />
+    <Compile Include="Pocos\UserRoleGroup.cs" />
+    <Compile Include="Pocos\ValidationWarnings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchPocos\LoginLicenceSearchCriteria.cs" />
+    <Compile Include="SearchPocos\ToBeTreatedLwpSettingSearchCriteria.cs" />
+    <Compile Include="SearchPocos\ToBeTreatedMobileDeviceSearchCriteria.cs" />
+    <Compile Include="SearchPocos\OrderItemHistorySearchCriteria.cs" />
+    <Compile Include="SearchPocos\DeviceTypeSearchCriteria.cs" />
+    <Compile Include="SearchPocos\LanguageSearchCriteria.cs" />
+    <Compile Include="SearchPocos\FlocIdSearchCriteria.cs" />
+    <Compile Include="SearchPocos\PlatformSearchCriteria.cs" />
+    <Compile Include="SearchPocos\LoginSiteSearchCriteria.cs" />
+    <Compile Include="SearchPocos\ProductTypeSearchCriteria.cs" />
+    <Compile Include="SearchPocos\RepairReasonSearchCriteria.cs" />
+    <Compile Include="SearchPocos\MobileDeviceSearchCriteria.cs" />
+    <Compile Include="SearchPocos\OrderItemSearchCriteria.cs" />
+    <Compile Include="SearchPocos\PurchaseOrderSearchCriteria.cs" />
+    <Compile Include="SearchPocos\SearchBase.cs" />
+    <Compile Include="SearchPocos\LwpSettingSearchCriteria.cs" />
+    <Compile Include="SearchPocos\OrderStateChangeSearchCriteria.cs" />
+    <Compile Include="SearchPocos\DeviceStateHistorySearchCriteria.cs" />
+    <Compile Include="SearchPocos\StateChangeSearchCriteria.cs" />
+    <Compile Include="SearchPocos\StateSearchCriteria.cs" />
+    <Compile Include="SearchPocos\UserRoleGroupSearchCriteria.cs" />
+    <Compile Include="SearchPocos\UserRoleSearchCriteria.cs" />
+    <Compile Include="SearchPocos\TranslationSearchCriteria.cs" />
+    <Compile Include="SearchPocos\UserSearchCriteria.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

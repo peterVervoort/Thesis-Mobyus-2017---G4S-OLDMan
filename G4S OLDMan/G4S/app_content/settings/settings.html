@@ -1,0 +1,31 @@
+﻿<g4s-page-top-bar title="Settings"></g4s-page-top-bar>
+
+<g4s-panel title="Settings.Panel">
+    <form class="form-horizontal"
+          novalidate>
+        <g4s-form-element label="Settings.ViewDeleted">
+            <label class="checkbox-inline">
+                <input type="checkbox"
+                       ng-model="ctrl.viewDeleted"
+                       class="form-control">&nbsp;
+            </label>
+        </g4s-form-element>
+
+        <g4s-form-element label="Settings.ViewAuditInfo">
+            <label class="checkbox-inline">
+                <input type="checkbox"
+                       ng-model="ctrl.viewAuditInfo"
+                       class="form-control">&nbsp;
+            </label>
+        </g4s-form-element>
+
+        <g4s-form-element label="Settings.RowCount">
+            <label class="checkbox-inline">
+                <input type="number"
+                       ng-model="ctrl.rowCount"
+                       class="form-control">
+            </label>
+        </g4s-form-element>
+    </form>
+
+</g4s-panel>

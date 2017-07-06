@@ -1,0 +1,23 @@
+﻿<g4s-panel title="General.DeviceStateHistoryTimeline" collapsable>
+    <div id="timeline">
+        <div class="timeline-item"
+             ng-repeat="state in states | limitTo:(quantity + 1)">
+            <div class="timeline-icon" ng-style="{'background-color': state.stateToColorHex}">
+            </div>
+            <div class="timeline-content" ng-class-even="'right'" ng-if="$index < quantity">
+                <h2 ng-style="{'background-color': state.stateToColorHex}">{{state.stateTo}}</h2>
+                <p>{{'DeviceStateHistory.ChangedOn' | translate}} {{state.changeDate | g4sdate}}</p>
+                <p>{{'DeviceStateHistory.ChangedBy' | translate}} {{state.changedByUser}}</p>
+                <hr ng-if="state.comment"/>
+                <p ng-if="state.comment">
+                    {{state.comment}}
+                </p>
+            </div>
+            <div class="timeline-content" ng-class-even="'right'" ng-if="$index >= quantity">
+                <h2>{{'DeviceStateHistory.TitleViewMore' | translate}}</h2>
+                <p>{{states.length - $index}} {{'DeviceStateHistory.StatesAvailable' | translate}}</p>
+                <a class="btn btn-primary btn-block" ng-click="viewMore()">{{'DeviceStateHistory.BtnViewMore' | translate}}</a>
+            </div>
+        </div>
+    </div>
+</g4s-panel>

@@ -1,0 +1,49 @@
+﻿<g4s-page-top-bar title="FlocId"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="flocIdForm"
+          ng-submit="ctrl.save(flocIdForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="FlocId.FlocIdNumber">
+            <input type="text"
+                   name="flocId"
+                   required
+                   placeholder="{{'FlocId.FlocIdNumber' | translate}}"
+                   ng-model="ctrl.flocId.flocIdNumber"
+                   class="form-control">
+            <p ng-show="flocIdForm.flocId.$invalid && flocIdForm.flocId.$touched"
+               class="help-block">{{'FlocId.FlocIdNumbeRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="FlocId.LoginSite">
+            <select class="form-control m-b"
+                    name="site"
+                    required
+                    ng-options="loginSite.siteName for loginSite in ctrl.loginSites track by loginSite.id"
+                    ng-model="ctrl.flocId.loginSite">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="flocIdForm.site.$invalid && flocIdForm.site.$touched"
+               class="help-block">{{'FlocId.LoginSiteRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="flocIdForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

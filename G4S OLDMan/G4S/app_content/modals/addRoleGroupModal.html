@@ -1,0 +1,42 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{'Modals.AddRoleGroupToStateChange' | translate}} {{ctrl.change.stateFrom}} => {{ctrl.change.stateTo}}</h3>
+</div>
+
+<form class="form-horizontal"
+      name="groupForm"
+      ng-submit="ctrl.save(groupForm.$valid)"
+      novalidate>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group">
+            <label class="col-lg-2 control-label">{{'AddRoleGroupModal.UserRoleGroup' | translate}}</label>
+
+            <div class="col-lg-10">
+                <select class="form-control m-b"
+                        name="userRoleGroup"
+                        ng-options="userRoleGroup.name for userRoleGroup in ctrl.userRoleGroups track by userRoleGroup.id"
+                        ng-model="ctrl.userRoleGroup">
+                    <option value=""
+                            disabled>
+                        -
+                    </option>
+                </select>
+            </div>
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="groupForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,23 @@
+﻿<g4s-panel title="{{title || 'General.Detail'}}" ng-class="{'deletedItem' : ngModel.softDelete}">
+    <actions ng-hide="ngModel.softDelete">
+        <span ng-transclude="actions"></span>
+        <a class="btn btn-danger"
+           ng-if="deleteResource"
+           g4s-role
+           role="{{deleteRole}}"
+           ng-click="delete()">{{'General.Delete' | translate}}</a>
+        <a class="btn btn-default"
+           ng-show="editButton"
+           ng-click="clickEditButton()">{{'General.Edit' | translate}}</a>
+    </actions>
+
+    <form class="form-horizontal">
+        <div class="form-group"
+             ng-repeat="item in definition">
+            <label class="col-xs-12 col-md-6 col-lg-5 control-label">{{item.label | translate}}</label>
+            <div class="col-xs-12 col-md-6 col-lg-7">
+                <p class="control-label heavyfont" ng-bind-html="ngModel[item.field] | picker:item.filter"></p>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

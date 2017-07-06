@@ -1,0 +1,25 @@
+﻿<g4s-page-top-bar title="UserRoleGroup"></g4s-page-top-bar>
+
+
+<g4s-detail-form ng-model="ctrl.userRoleGroup"
+                 definition="ctrl.definition"
+                 delete-resource="{{resources.userRoleGroups}}"
+                 delete-role="{{roles.userRoleGroupDelete}}"
+                 edit-state="{{states.userRoleGroupEdit}}"
+                 return-state="{{states.userRoleGroupList}}">
+    <actions>
+        <a class="btn btn-default" 
+           g4s-role 
+           role="{{roles.userRoleGroupAddRole}}" 
+           ng-click="ctrl.addRole()">{{'UserRoleGroups.AddRole' | translate}}</a>
+    </actions>
+</g4s-detail-form>
+
+<g4s-panel title="UserRoleGroups.SelectedUserRoles">
+    <g4s-table headers="ctrl.selectedRolesTable.headers"
+               actions="ctrl.selectedRolesTable.actions"
+               search-criteria="ctrl.selectedRolesTable.searchCriteria"
+               resource="resources.userRoles"
+               pagination>
+    </g4s-table>
+</g4s-panel>

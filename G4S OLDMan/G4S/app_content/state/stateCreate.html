@@ -1,0 +1,73 @@
+﻿<g4s-page-top-bar title="States"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="stateForm"
+          ng-submit="ctrl.save(stateForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="State.Name">
+            <input type="text"
+                   name="name"
+                   required
+                   placeholder="{{'State.Name' | translate}}"
+                   ng-model="ctrl.state.name"
+                   class="form-control">
+            <p ng-show="stateForm.name.$invalid && stateForm.name.$touched"
+               class="help-block">{{'State.NameRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="State.Description">
+            <input type="text"
+                   name="description"
+                   placeholder="{{'State.Description' | translate}}"
+                   ng-model="ctrl.state.description"
+                   class="form-control">
+        </g4s-form-element>
+
+        <g4s-form-element label="State.Kind">
+            <select class="form-control m-b"
+                    required
+                    name="kind"
+                    ng-options="stateKind.name for stateKind in ctrl.stateKinds track by stateKind.id"
+                    ng-model="ctrl.state.kind">
+            </select>
+            <p ng-show="stateForm.kind.$invalid && stateForm.kind.$touched"
+               class="help-block">{{'State.Kindrequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="State.Tag">
+            <input type="text"
+                   name="tag"
+                   placeholder="{{'State.Tag' | translate}}"
+                   ng-model="ctrl.state.tag"
+                   class="form-control">
+        </g4s-form-element>
+
+        <g4s-form-element label="State.Color">
+            <color-picker ng-model="ctrl.state.colorHex" class="form-control"></color-picker>
+        </g4s-form-element>
+
+        <g4s-form-element label="State.IsSpare">
+            <label class="checkbox-inline">
+                <input type="checkbox"
+                       ng-model="ctrl.state.isSpare"
+                       class="form-control">&nbsp;
+            </label>
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="stateForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

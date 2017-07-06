@@ -1,0 +1,42 @@
+﻿<g4s-page-top-bar title="Platform"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="platformForm"
+          ng-submit="ctrl.save(platformForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="Platform.Platform">
+            <input type="text"
+                   name="platform"
+                   required
+                   placeholder="{{'Platform.Platform' | translate}}"
+                   ng-model="ctrl.platform.platform"
+                   class="form-control">
+            <p ng-show="platformForm.platform.$invalid && platformForm.platform.$touched"
+               class="help-block">{{'Platform.PlatformRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="Platform.Synonyms">
+            <input type="text"
+                   name="csvsynonyms"
+                   placeholder="{{'Platform.Synonyms' | translate}}"
+                   ng-model="ctrl.platform.csvSynonyms"
+                   class="form-control">
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="platformForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

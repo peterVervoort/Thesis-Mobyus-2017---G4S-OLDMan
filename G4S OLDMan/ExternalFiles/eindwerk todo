@@ -1,0 +1,59 @@
+ TODO :: urgent
+
+- license scherm
+
+Tijdverschil server oplossen => momentJS
+
+bug rechten aanpassen reload pagina voor refresh sidenav
+
+import csv excel => peter
+
+replace device on orderitem automatically => triggered on statechange
+
+
+History + manier om te kijken
+
+scope nog eens nakijken->sim nazien
+
+Alles van lijsten door vertaling halen
+
+Bestelling bewerken: bestelling nr blijft ongewijzigd -> {"message":"PurchaseOrderNumber: 45 has already been used, must be unique"}
+
+Bestelling detail nieuw bestel detail -> vervolgens annuleren 1x gaat Warning order item Line requiered af -> 2 x op annuleren drukken -> error {"message":"The request is invalid.","modelState":{"model.CostCenter":["The CostCenter field is required."]}}
+
+New device added with incorrect LWP setting -> device is saved but no LWP setting obj is saved. (device has link to not existing lwp setting)
+
+
+ if PO is removed remove itemlines
+
+add option somewhere to cancel a itemline
+
+Dashboard general filter op devicetype voorzien
+
+
+
+TODO :: improvements
+
+Date selectie verbeteren
+Identity tables volledig eruit halen => http://stackoverflow.com/questions/34848139/asp-net-identity-database-first-custom-user-and-role
+seeding translation
+multiple device toevoegen barcode 
+logo + kleuren
+Meerdere rollen per keer kiezen in add role funcite
+State definieren of het voor producttype x of y is of een devicetype change
+Delivery to operations always later then delivery of supplier
+Vertaling gebruikers rechten ->  beschrijvingen seeden only in ENG
+Active guard reference starts wit zero's has to be ignored
+Voeg recht toe tot een groep -> nu een per een , meerdere selecteren om die dan in 1 keer toe te voegen
+Shakel vertaling uit ok ->  terug shakelen via F5 -> disable button indien ingeshakeld
+Order item toevoegen -> automatisch item line invullen 1+ laatste
+Login scherm geen side nav menus
+Validatie msg's aren't displayed
+Mobile device country is default belgium Manuel ok?
+LWP settings detail nog tue's ipv checkboxes
+Magic pasword
+uitloggen
+login sites automatisch toevoegen aan admin
+rechten automatisch toekennen aan admin
+translate mouse hoover strings
+posibility to add a userRoleGroup to a userRoleGroup

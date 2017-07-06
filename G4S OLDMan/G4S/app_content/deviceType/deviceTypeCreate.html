@@ -1,0 +1,50 @@
+﻿<g4s-page-top-bar title="DeviceTypes"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="deviceTypeForm"
+          ng-submit="ctrl.save(deviceTypeForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="DeviceType.TypeName">
+            <input type="text"
+                   name="typeName"
+                   required
+                   placeholder="{{'DeviceType.TypeName' | translate}}"
+                   ng-model="ctrl.deviceType.typeName"
+                   class="form-control">
+            <p ng-show="deviceTypeForm.typeName.$invalid && deviceTypeForm.typeName.$touched"
+               class="help-block">{{'DeviceType.TypeNameRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="DeviceType.LwpSettingPossible">
+            <label class="checkbox-inline">
+                <input type="checkbox"
+                       ng-model="ctrl.deviceType.lwpSettingPossible"
+                       class="form-control">&nbsp;
+            </label>
+        </g4s-form-element>
+
+        <g4s-form-element label="DeviceType.Synonyms">
+            <input type="text"
+                   name="csvsynonyms"
+                   placeholder="{{'DeviceType.Synonyms' | translate}}"
+                   ng-model="ctrl.deviceType.csvSynonyms"
+                   class="form-control">
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="deviceTypeForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

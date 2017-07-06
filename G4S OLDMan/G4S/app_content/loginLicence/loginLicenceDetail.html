@@ -1,0 +1,32 @@
+﻿<g4s-page-top-bar title="LoginLicences"></g4s-page-top-bar>
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <g4s-detail-form ng-model="ctrl.loginLicence"
+                         definition="ctrl.definition"
+                         delete-resource="{{resources.loginLicences}}"
+                         delete-role="{{roles.loginLicenceDelete}}"
+                         edit-state="{{states.loginLicenceEdit}}"
+                         return-state="{{states.loginLicenceList}}">
+        </g4s-detail-form>
+    </div>
+
+    <div class="col-lg-6">
+        <a ui-sref="{{states.orderItemDetail}}({ id: ctrl.loginLicence.orderItemId})" class="nolink">
+            <g4s-detail-form title="LoginLicence.OrderItemTitle"
+                             ng-model="ctrl.orderItem"
+                             definition="ctrl.orderItemDefinition">
+            </g4s-detail-form>
+        </a>
+    </div>
+</div>
+
+<g4s-panel title="LoginLicence.FlocIdTable">
+    <g4s-table headers="ctrl.flocIdTable.headers"
+               actions="ctrl.flocIdTable.actions"
+               search-criteria="ctrl.flocIdTable.searchCriteria"
+               resource="resources.flocIds"
+               detail-state="states.flocIdDetail">
+    </g4s-table>
+</g4s-panel>

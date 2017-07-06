@@ -1,0 +1,55 @@
+﻿<g4s-page-top-bar title="Dashboard"></g4s-page-top-bar>
+
+<div class="row">
+    <g4s-percent-widget ng-click="ctrl.translationMissing.click()"
+                        ng-model="ctrl.translationMissing"
+                        title="MissingTranslation"
+                        color="5"
+                        icon="fa-language">
+
+    </g4s-percent-widget>
+
+    <div ng-repeat="tagblock in ctrl.tagblocks">
+        <g4s-percent-widget ng-click="ctrl.clickTag(tagblock.tag)"
+                            ng-model="tagblock"
+                            title="{{tagblock.title}}"
+                            color="5"
+                            icon="{{tagblock.icon}}">
+
+        </g4s-percent-widget>
+
+        <div class="col-sm-12" ng-if="tagblock.details" style="margin-bottom:20px">
+            <g4s-panel title="Dashboard.{{tagblock.title}}DetailTitle"
+                       on-remove="ctrl.closeTag(tagblock.tag)"
+                       dismissable>
+
+                <p style="text-align:center; font-weight:bold" ng-show="tagblock.details.empty">{{'Dashboard.NoResults'}}</p>
+                <div ng-hide="tagblock.details.empty">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <!-- graph -->
+                        <div class="panel-body text-center">
+                            <div class="chart-container col-70 col-100-when-small" style="padding-top:20px">
+                                <linechart data="tagblock.details.data"
+                                           options="tagblock.details.options">
+                                </linechart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-8">
+                        <!-- grid -->
+                        <g4s-table headers="tagblock.details.tableHeaders"
+                                   detail-state="states.mobileDeviceDetail"
+                                   resource="resources.mobileDevices"
+                                   search-criteria="tagblock.details.tableSearchCriteria"
+                                   pagination>
+                        </g4s-table>
+                    </div>
+                </div>
+            </g4s-panel>
+
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,15 @@
+﻿<ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-home"></i></a></li>
+    <li ng-repeat="state in states"
+        ng-class="{'active':$last}">
+
+        <a ng-if="!$last"
+           ui-sref="{{state.name}}">
+            {{state.display | translate}}
+        </a>
+
+        <span ng-if="$last">
+            {{state.display | translate}}
+        </span>
+    </li>
+</ol>

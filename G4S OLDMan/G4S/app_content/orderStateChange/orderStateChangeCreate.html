@@ -1,0 +1,65 @@
+﻿<g4s-page-top-bar title="OrderStateChanges"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="orderStateChangeForm"
+          ng-submit="ctrl.save(orderStateChangeForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="OrderStateChange.StateFrom">
+            <select class="form-control m-b"
+                    name="stateFrom"
+                    ng-options="state.name for state in ctrl.states track by state.id"
+                    ng-model="ctrl.orderStateChange.stateFrom">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+        </g4s-form-element>
+
+        <g4s-form-element label="OrderStateChange.StateTo">
+            <select class="form-control m-b"
+                    required
+                    name="stateTo"
+                    ng-options="state.name for state in ctrl.states track by state.id"
+                    ng-model="ctrl.orderStateChange.stateTo">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="userForm.stateTo.$invalid && userForm.stateTo.$touched"
+               class="help-block">{{'Translation.StateToRequired' | translate }}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="OrderStateChange.ProductType">
+            <select class="form-control m-b"
+                    required
+                    name="productType"
+                    ng-options="productType.typeName for productType in ctrl.productTypes track by productType.id"
+                    ng-model="ctrl.orderStateChange.productType">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+            <p ng-show="userForm.productType.$invalid && userForm.productType.$touched"
+               class="help-block">{{'Translation.ProductTypeRequired' | translate }}</p>
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="orderStateChangeForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

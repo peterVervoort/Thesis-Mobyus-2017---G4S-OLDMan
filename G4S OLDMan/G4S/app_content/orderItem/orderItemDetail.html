@@ -1,0 +1,68 @@
+﻿<g4s-page-top-bar title="OrderItem"></g4s-page-top-bar>
+
+<div class="row">
+    <div class="col-lg-6">
+        <g4s-detail-form ng-model="ctrl.orderItem"
+                         definition="ctrl.definition"
+                         delete-resource="{{resources.orderItems}}"
+                         delete-role="{{roles.itemLineDelete}}"
+                         edit-state="{{states.orderItemEdit}}"
+                         return-state="{{states.orderItemList}}">
+            <actions>
+                <a class="btn btn-danger"
+                   ng-click="ctrl.cancelOrderItem()">{{'General.BtnCancelOrderItem' | translate}}</a>
+            </actions>
+        </g4s-detail-form>
+    </div>
+
+    <div class="col-lg-6">
+        <a ui-sref="{{states.purchaseOrderDetail}}({ id: ctrl.purchaseOrder.id})" class="nolink">
+            <g4s-detail-form title="OrderItem.PurchaseOrderTitle"
+                             ng-model="ctrl.purchaseOrder"
+                             definition="ctrl.purchaseOrderDefinition">
+            </g4s-detail-form>
+        </a>
+
+        <g4s-detail-form ng-model="ctrl.orderItem" ng-if="ctrl.productType.hasOrderStates"
+                         title="General.StateDetail"
+                         definition="ctrl.stateDefinition">
+        </g4s-detail-form>
+    </div>
+</div>
+
+<div class="row" ng-show="ctrl.productType.deviceTypeRequired">
+    <div class="col-sm-12">
+        <g4s-panel title="General.DeviceLink" collapsable>
+            <g4s-table headers="ctrl.mobileDeviceTable.headers"
+                       actions="ctrl.mobileDeviceTable.actions"
+                       search-criteria="ctrl.mobileDeviceTable.searchCriteria"
+                       resource="resources.mobileDevices"
+                       detail-state="states.mobileDeviceDetail">
+            </g4s-table>
+        </g4s-panel>
+    </div>
+</div>
+
+<div class="row" ng-show="ctrl.productType.loginLicenceRequired">
+    <div class="col-sm-12">
+        <g4s-panel title="General.LoginLicenceLink" collapsable>
+            <g4s-table headers="ctrl.loginLicenceTable.headers"
+                       actions="ctrl.loginLicenceTable.actions"
+                       search-criteria="ctrl.loginLicenceTable.searchCriteria"
+                       resource="resources.loginLicences"
+                       detail-state="states.loginLicenceDetail">
+            </g4s-table>
+        </g4s-panel>
+    </div>
+</div>
+
+
+<div class="row" ng-if="ctrl.productType.hasOrderStates">
+    <div class="col-sm-12">
+        <order-state-change orderitem="ctrl.orderItem.id">
+        </order-state-change>
+    </div>
+</div>
+
+<order-timeline orderitem="ctrl.orderItem.id" ng-if="ctrl.productType.hasOrderStates">
+</order-timeline>

@@ -1,0 +1,9 @@
+﻿<form class="form-horizontal" ng-class="{'deletedItem' : auditPopover.model.softDelete}">
+    <div class="form-group"
+         ng-repeat="item in auditPopover.definition">
+        <label class="col-xs-12 col-md-6 col-lg-5 control-label">{{item.label | translate}}</label>
+        <div class="col-xs-12 col-md-6 col-lg-7">
+            <p class="control-label heavyfont" ng-bind-html="auditPopover.model[item.field] | picker:item.filter"></p>
+        </div>
+    </div>
+</form>

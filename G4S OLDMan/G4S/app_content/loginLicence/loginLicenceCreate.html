@@ -1,0 +1,56 @@
+﻿<g4s-page-top-bar title="LoginLicences"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="loginLicenceForm"
+          ng-submit="ctrl.save(loginLicenceForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="LoginLicence.LoginSite">
+            <select class="form-control m-b"
+                    name="site"
+                    ng-options="loginSite.siteName for loginSite in ctrl.loginSites track by loginSite.id"
+                    ng-model="ctrl.loginLicence.loginSite">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+        </g4s-form-element>
+
+        <g4s-form-element label="LoginLicence.Platform">
+            <select class="form-control m-b"
+                    required
+                    name="platform"
+                    ng-options="platform.platform for platform in ctrl.platforms track by platform.id"
+                    ng-model="ctrl.loginLicence.platform">
+                <option value=""
+                        disabled>
+                    -
+                </option>
+            </select>
+        </g4s-form-element>
+
+        <g4s-form-element label="LoginLicence.CertificateCreated">
+            <label class="checkbox-inline">
+                <input type="checkbox"
+                       ng-model="ctrl.loginLicence.certificateCreated"
+                       class="form-control">&nbsp;
+            </label>
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="loginLicenceForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

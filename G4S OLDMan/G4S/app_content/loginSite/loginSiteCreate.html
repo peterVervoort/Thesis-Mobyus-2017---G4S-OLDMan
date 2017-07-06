@@ -1,0 +1,42 @@
+﻿<g4s-page-top-bar title="LoginSites"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="loginSiteForm"
+          ng-submit="ctrl.save(loginSiteForm.$valid)"
+          novalidate>
+
+        <g4s-form-element label="LoginSite.SiteName">
+            <input type="text"
+                   name="reason"
+                   required
+                   placeholder="{{'LoginSite.SiteName' | translate}}"
+                   ng-model="ctrl.loginSite.siteName"
+                   class="form-control">
+            <p ng-show="loginSiteForm.name.$invalid && loginSiteForm.name.$touched"
+               class="help-block">{{'LoginSite.SiteNameRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="LoginSite.Synonyms">
+            <input type="text"
+                   name="csvsynonyms"
+                   placeholder="{{'LoginSite.Synonyms' | translate}}"
+                   ng-model="ctrl.loginSite.csvSynonyms"
+                   class="form-control">
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="loginSiteForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

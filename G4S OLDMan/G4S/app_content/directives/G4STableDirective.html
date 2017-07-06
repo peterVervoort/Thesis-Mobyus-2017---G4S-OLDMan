@@ -1,0 +1,137 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div ng-if="actions">
+            <a ng-repeat="action in actions"
+               ng-if="action.selectable"
+               ng-disabled="action.disabled"
+               ng-click="clickAction(action)"
+               class="btn btn-default">{{action.name | translate}}</a>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div ng-if="actions || csv" style="float:right">
+            <a ng-repeat="action in actions"
+               ng-if="!action.selectable"
+               ng-disabled="action.disabled"
+               ng-click="action.callback()"
+               class="btn btn-primary">{{action.name | translate}}</a>
+            <a ng-if="newState"
+               g4s-state-role
+               ui-sref="{{newState}}"
+               class="btn btn-primary">{{'General.AddNew' | translate}}</a>
+            <a ng-if="csv"
+               g4s-role
+               role="{{csvRole}}"
+               ng-click="downloadCSV()"
+               class="btn btn-default">{{'General.BtnDownloadCSV' | translate}}</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-container">
+            <table st-table="displayedCollection" st-safe-src="data" class="table table-striped">
+                <thead>
+                    <!--regular header-->
+                    <tr>
+                        <th g4s-ratio="2"
+                            ng-if="actionsWithSelect">
+                        </th>
+                        <th g4s-ratio="{{header.ratio}}"
+                            style="font-weight:600"
+                            ng-class="{'handcursor': header.sort }"
+                            ng-click="clickHeader(header)"
+                            lr-drag-src="headers"
+                            lr-drop-target="headers"
+                            ng-repeat='header in headers'>
+                            {{ header.name | translate}}
+                            <span ng-if="header.sort && header.sortField">
+                                <span ng-hide="header.sortDescending"><i class="fa fa-sort-asc"></i></span>
+                                <span ng-show="header.sortDescending"><i class="fa fa-sort-desc"></i></span>
+                            </span>
+                        </th>
+                        <th g4s-ration="5"
+                            ng-if="viewAudit">
+                            {{ 'header.HeaderAudit' | translate}}
+                        </th>
+                    </tr>
+                    <!--searchheader-->
+                    <tr ng-if="hasSearchHeaders">
+                        <th g4s-ratio="2"
+                            ng-if="actionsWithSelect">
+                            <i ng-click="$parent.deselectAll()" ng-show="allSelected" class="fa fa-check-square-o" aria-hidden="true"></i><i ng-click="$parent.selectAll()" ng-hide="allSelected" class="fa fa-square-o" aria-hidden="true"></i>
+                        </th>
+                        <th g4s-ratio="{{header.ratio}}"
+                            ng-repeat='header in headers'>
+                            <input type="search"
+                                   ng-if="header.search"
+                                   placeholder="{{header.name | translate}}"
+                                   ng-model="header.searchValue"
+                                   ng-model-options="{ debounce: 250 }"
+                                   ng-change="searchChanged()"
+                                   class="input-sm form-control" />
+                        </th>
+                        <th g4s-ration="5"
+                            ng-if="viewAudit">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in displayedCollection" ng-class="{'deletedItem': row.softDelete }">
+                        <td g4s-ration="2"
+                            ng-class="getRowSelected(row)"
+                            ng-if="actionsWithSelect"
+                            cs-select="row"></td>
+                        <td g4s-ratio="{{header.ratio}}" ng-bind-html="row[header.field]  | picker:header.filter"
+                            ng-click="clickRow(row.id)"
+                            ng-repeat="header in headers"></td>
+                        <td g4s-ration="5"
+                            ng-if="viewAudit">
+                            <button ng-mouseenter="showAudit(row)"
+                                    uib-popover-template="auditPopover.templateUrl"
+                                    popover-trigger="'mouseenter'"
+                                    popover-class="increase-popover-width"
+                                    popover-title="{{'General.Audit' | translate}}"
+                                    type="button"
+                                    class="btn btn-default">
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot ng-if="pagination">
+                    <tr>
+                        <td colspan="{{headers.length + 1}}">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <ul class="pagination">
+                                        <li>
+                                            {{firstItem}} - {{lastItem}} {{'General.TablePaginationOf' | translate}} {{totalItems}} {{'General.TablePaginationItems' | translate}}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <ul class="pagination" style="float:right">
+                                        <li>
+                                            <a ng-click="goToPage(1)">{{'Pagination.First' | translate}}</a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="goToPage(currentPage - 1)">&lt;</a>
+                                        </li>
+                                        <li>
+                                            <a><input type="text" style="height:20px;width:40px" class="select-page" ng-model="inputPage" ng-change="goToPage(inputPage)"> of {{pageCount}}</a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="goToPage(currentPage + 1)">&gt;</a>
+                                        </li>
+                                        <li><a ng-click="goToPage(pageCount)">{{'Pagination.Last' | translate}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

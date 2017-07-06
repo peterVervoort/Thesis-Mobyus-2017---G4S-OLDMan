@@ -1,0 +1,21 @@
+﻿<g4s-page-top-bar title="PurchaseOrder"></g4s-page-top-bar>
+
+<g4s-detail-form ng-model="ctrl.purchaseOrder"
+                 definition="ctrl.definition"
+                 delete-resource="{{resources.purchaseOrders}}"
+                 delete-role="{{roles.poDelete}}"
+                 edit-state="{{states.purchaseOrderEdit}}"
+                 return-state="{{states.purchaseOrderList}}">
+    <actions>
+        <a class="btn btn-default" ng-click="ctrl.addOrderItem()">{{'PurchaseOrder.AddOrderItem' | translate}}</a>
+    </actions>
+</g4s-detail-form>
+
+<g4s-panel title="OrderItems.OrderItemsForPurchaseOrder">
+    <g4s-table headers="ctrl.orderItemsTable.headers"
+               actions="ctrl.orderItemsTable.actions"
+               search-criteria="ctrl.orderItemsTable.searchCriteria"
+               resource="resources.orderItems"
+               detail-state="states.orderItemDetail">
+    </g4s-table>
+</g4s-panel>

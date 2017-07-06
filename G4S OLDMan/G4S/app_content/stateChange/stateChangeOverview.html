@@ -1,0 +1,25 @@
+﻿<g4s-page-top-bar title="StateChanges"></g4s-page-top-bar>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-card margin-b-30 ">
+            <div class="panel-heading">
+                <h4 class="panel-title">{{'General.Overview' | translate}}</h4> 
+            </div>
+            <div class="panel-body">
+                <g4s-table headers="ctrl.table.headers"
+                           actions="ctrl.table.actions"
+                           resource="resources.stateChanges"
+                           detail-state="states.stateChangeDetail"
+                           new-state="states.stateChangeNew"
+               csv-role="roles.deviceStatesFlowCSV"
+                           csv
+                           pagination>
+                </g4s-table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

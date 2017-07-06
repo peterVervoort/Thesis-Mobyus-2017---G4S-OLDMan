@@ -1,0 +1,41 @@
+﻿<g4s-page-top-bar title="UserRoleGroup"></g4s-page-top-bar>
+
+<g4s-panel title="{{ctrl.title}}">
+    <form class="form-horizontal"
+          name="userRoleGroupForm"
+          ng-submit="ctrl.save(userRoleGroupForm.$valid)"
+          novalidate>
+        <g4s-form-element label="UserRoleGroups.Name">
+            <input type="text"
+                   required
+                   name="name"
+                   placeholder="{{'UserRoleGroups.Name' | translate}}"
+                   ng-model="ctrl.userRoleGroup.name"
+                   class="form-control">
+            <p ng-show="userRoleGroupForm.name.$invalid && userRoleGroupForm.name.$touched"
+               class="help-block">{{'UserRoleGroups.NameRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="UserRoleGroups.AutoLinkEveryGroup">
+            <label class="checkbox-inline">
+                <input type="checkbox"
+                       ng-model="ctrl.userRoleGroup.autoLinkEveryGroup"
+                       class="form-control">&nbsp;
+            </label>
+        </g4s-form-element>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="userRoleGroupForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</g4s-panel>

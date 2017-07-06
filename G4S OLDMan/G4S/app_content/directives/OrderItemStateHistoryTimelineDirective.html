@@ -1,0 +1,23 @@
+﻿<g4s-panel title="General.OrderItemStateHistoryTimeline" collapsable>
+    <div id="timeline">
+        <div class="timeline-item"
+             ng-repeat="state in states | limitTo:(quantity + 1)">
+            <div class="timeline-icon">
+            </div>
+            <div class="timeline-content"  ng-class-even="'right'" ng-if="$index < quantity">
+                <h2 ng-style="{'background-color': state.stateToColorHex}">{{state.stateTo}}</h2>
+                <p>{{'OrderItemStateHistory.ChangedOn' | translate}} {{state.changeDate | g4sdate}}</p>
+                <p>{{'OrderItemStateHistory.ChangedBy' | translate}} {{state.changedByUser}}</p>
+                <hr ng-if="state.comment"/>
+                <p ng-if="state.comment">
+                    {{state.comment}}
+                </p>
+            </div>
+            <div class="timeline-content" ng-class-even="'right'" ng-if="$index >= quantity">
+                <h2 ng-style="{'background-color': state.colorHex}">{{'OrderItemStateHistory.TitleViewMore' | translate}}</h2>
+                <p>{{states.length - $index}} {{'OrderItemStateHistory.StatesAvailable' | translate}}</p>
+                <a class="btn btn-primary btn-block" ng-click="viewMore()">{{'OrderItemStateHistory.BtnViewMore' | translate}}</a>
+            </div>
+        </div>
+    </div>
+</g4s-panel>

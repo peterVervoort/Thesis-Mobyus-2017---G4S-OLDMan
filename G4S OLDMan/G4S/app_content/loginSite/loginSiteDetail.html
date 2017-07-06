@@ -1,0 +1,19 @@
+﻿<g4s-page-top-bar title="LoginSites"></g4s-page-top-bar>
+
+<g4s-detail-form ng-model="ctrl.loginSite"
+                 definition="ctrl.definition"
+                 delete-resource="{{resources.loginSites}}"
+                 delete-role="{{roles.loginSiteDelete}}"
+                 edit-state="{{states.loginSiteEdit}}"
+                 return-state="{{states.loginSiteList}}">
+</g4s-detail-form>
+
+<g4s-panel title="LoginSite.Users">
+    <g4s-table headers="ctrl.loginSiteTable.headers"
+               actions="ctrl.loginSiteTable.actions"
+               detail-state="states.userDetail"
+               search-criteria="ctrl.loginSiteTable.searchCriteria"
+               resource="resources.users"
+               pagination>
+    </g4s-table>
+</g4s-panel>

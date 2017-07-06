@@ -1,0 +1,108 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{'Modals.CreateOrderItemTitle' | translate}}</h3>
+</div>
+
+<form class="form-horizontal"
+      name="orderItemForm"
+      ng-submit="ctrl.save(orderItemForm.$valid)"
+      novalidate>
+
+    <div class="modal-body" id="modal-body">
+        <g4s-form-element label="OrderItem.CostCenter">
+            <input type="text"
+                   name="costCenter"
+                   required
+                   placeholder="{{'OrderItem.CostCenter' | translate}}"
+                   ng-model="ctrl.orderItem.costCenter"
+                   class="form-control">
+            <p ng-show="orderItemForm.costCenter.$invalid && (orderItemForm.costCenter.$dirty ||orderItemForm.quantityOfProducts.$touched)"
+               class="help-block">{{'OrderItem.CostCenterRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="OrderItem.QuantityOfProducts">
+            <input type="number"
+                   name="quantityOfProducts"
+                   min="1"
+                   required
+                   placeholder="{{'OrderItem.QuantityOfProducts' | translate}}"
+                   ng-model="ctrl.orderItem.quantityOfProducts"
+                   class="form-control">
+            <p ng-show="orderItemForm.quantityOfProducts.$invalid && orderItemForm.quantityOfProducts.$touched"
+               class="help-block">{{'OrderItem.QuantityOfProductsRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="OrderItem.ProductType">
+            <select class="form-control m-b"
+                    required
+                    name="productType"
+                    ng-options="productType.typeName for productType in ctrl.productTypes track by productType.id"
+                    ng-model="ctrl.orderItem.productType"></select>
+            <p ng-show="orderItemForm.productType.$invalid && orderItemForm.productType.$touched"
+               class="help-block">{{'OrderItem.ProductTypeRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="OrderItem.DeviceType" ng-if="ctrl.orderItem.productType.deviceTypeRequired">
+            <select class="form-control m-b"
+                    required
+                    name="deviceType"
+                    ng-options="deviceType.typeName for deviceType in ctrl.deviceTypes track by deviceType.id"
+                    ng-model="ctrl.orderItem.deviceType"></select>
+            <p ng-show="ctrl.orderItem.productType.deviceTypeRequired && orderItemForm.deviceType.$invalid && orderItemForm.deviceType.$touched"
+               class="help-block">{{'OrderItem.DeviceTypeRequired' | translate}}</p>
+        </g4s-form-element>
+
+        <g4s-form-element label="OrderItem.DeliveryOfSupplier">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"
+                       name="orderDate"
+                       ng-model="ctrl.orderItem.deliveryOfSupplier"
+                       is-open="popup1.opened"
+                       popup-placement="bottom-left"
+                       close-text="{{'General.BtnDateClose' | translate}}"
+                       current-text="{{'General.BtnToday' | translate}}"
+                       clear-text="{{'General.BtnClear  ' | translate}}"
+                       alt-input-formats="['d!/M!/yyyy']" />
+                <span class="input-group-btn">
+                    <button type="button" style="padding: 4px 6px;" class="btn btn-default" ng-click="popup1.opened = true;"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+        </g4s-form-element>
+
+        <g4s-form-element label="OrderItem.DeliveryToOperations">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"
+                       name="orderDate"
+                       ng-model="ctrl.orderItem.deliveryToOperations"
+                       is-open="popup2.opened"
+                       popup-placement="bottom-left"
+                       close-text="{{'General.BtnDateClose' | translate}}"
+                       current-text="{{'General.BtnToday' | translate}}"
+                       clear-text="{{'General.BtnClear  ' | translate}}"
+                       alt-input-formats="['d!/M!/yyyy']" />
+                <span class="input-group-btn">
+                    <button type="button" style="padding: 4px 6px;" class="btn btn-default" ng-click="popup2.opened = true;"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+        </g4s-form-element>
+    </div>
+
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-sm btn-primary"
+                        ng-disabled="orderItemForm.$invalid"
+                        type="submit">
+                    {{'General.BtnSave' | translate }}
+                </button>
+                <button class="btn btn-sm btn-default"
+                        type="button"
+                        formnovalidate
+                        ng-click="ctrl.cancel()">
+                    {{'General.BtnCancel' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</form>
+

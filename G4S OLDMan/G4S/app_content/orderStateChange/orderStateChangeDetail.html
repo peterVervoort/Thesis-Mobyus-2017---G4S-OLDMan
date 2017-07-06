@@ -1,0 +1,21 @@
+﻿<g4s-page-top-bar title="OrderStateChanges"></g4s-page-top-bar>
+
+<g4s-detail-form ng-model="ctrl.orderStateChange"
+                 definition="ctrl.definition"
+                 delete-resource="{{resources.orderStateChanges}}"
+                 delete-role="{{roles.orderStatesFlowDelete}}"
+                 edit-state="{{states.orderStateChangeEdit}}"
+                 return-state="{{states.orderStateChangeList}}">
+    <actions>
+        <a class="btn btn-default" ng-click="ctrl.addRoleGroup()">{{'UserRoleGroups.AddRoleGroup' | translate}}</a>
+    </actions>
+</g4s-detail-form>
+
+<g4s-panel title="StateChange.SelectedUserRoleGroups">
+    <g4s-table headers="ctrl.selectedGroupsTable.headers"
+               actions="ctrl.selectedGroupsTable.actions"
+               search-criteria="ctrl.selectedGroupsTable.searchCriteria"
+               resource="resources.userRoleGroups"
+               pagination>
+    </g4s-table>
+</g4s-panel>

@@ -1,0 +1,7 @@
+﻿<g4s-panel title="General.StateChangePanelTitle">
+    <actions >
+        <a class="btn btn-default" ng-if="!hideActions"
+           ng-repeat="stateChange in possibleStates" 
+           ng-click="setNewState(stateChange)">{{stateChange.stateTo | translate}}</a>
+    </actions>
+</g4s-panel>
